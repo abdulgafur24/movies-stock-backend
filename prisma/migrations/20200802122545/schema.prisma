@@ -1,0 +1,21 @@
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Movie {
+  id              Int @id @default(autoincrement())
+  name            String @unique
+  collection      Collection  @relation(fields: [collectionId], references: [id])
+  collectionId    Int
+}
+
+model Collection {
+  id              Int @id @default(autoincrement())
+  name            String @unique
+  movies          Movie[]
+}
