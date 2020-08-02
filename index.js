@@ -6,6 +6,8 @@ const typeDefs = require("./src/typedefs");
 const Query = require("./src/Query");
 const Mutation = require("./src/Mutation");
 
+const { PORT = 8080 } = process.env;
+
 const resolvers = {
   Query,
   Mutation,
@@ -19,6 +21,4 @@ const server = new ApolloServer({
   },
 });
 
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+server.listen(PORT);
