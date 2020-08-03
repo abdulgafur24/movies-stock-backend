@@ -1,4 +1,4 @@
-const { ApolloError } = require("apollo-server");
+const { UserInputError } = require("apollo-server");
 
 const Mutation = {
   createMovie: async (_, { name, collectionId }, context) => {
@@ -13,7 +13,7 @@ const Mutation = {
       });
       return newMovie;
     } catch (error) {
-      return new ApolloError("Movie with this name already exists");
+      return new UserInputError("Movie with this name already exists");
     }
   },
   removeMovie: async (_, { movieId }, context) => {
@@ -25,7 +25,7 @@ const Mutation = {
       });
       return removeMovie;
     } catch (error) {
-      return new ApolloError(error);
+      return new UserInputError(error);
     }
   },
   createCollection: async (_, { name }, context) => {
@@ -37,7 +37,7 @@ const Mutation = {
       });
       return newCollection;
     } catch (error) {
-      return new ApolloError("Collection with this name already exists");
+      return new UserInputError("Collection with this name already exists");
     }
   },
 };
